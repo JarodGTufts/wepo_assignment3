@@ -8,7 +8,7 @@ class App extends React.Component {
     }
     render() {
         return (
-            <div>I am the Ass</div>
+            <div>I am the App</div>
         );
     }
 }
