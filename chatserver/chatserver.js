@@ -267,6 +267,16 @@ io.on('connection', function (socket) {
 		socket.emit('userlist', userlist);
 	});
 
+	//Returns a list of all users connected to a room.
+	socket.on('roomusers', function(data) {
+		var userlist = [];
+		if(rooms[data.roomName] !== undefined)
+		{
+			userlist = rooms[data.roomName].users;
+		}
+		socket.emit('roomuserlist', userlist);
+	});
+
 	//Sets topic for room.
 	socket.on('settopic', function (topicObj, fn) {
 		//If user is OP

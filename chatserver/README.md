@@ -113,6 +113,16 @@ The server will emit the "userlist" event back to the caller, containing a list 
 
 Note that the following commands are also supported, but it is not required to use them (unless you want to write a really awesome chat application). Feel free to experiment with these features.
 
+**roomusers**
+This should get called to get a list of all users connected to a room.
+Parameters:
+an object containing the following properties:
+```js
+{
+    room: "The ID of the room"
+}
+```
+
 **op**
 Allows the creator of a room to convert another user to a "op", i.e. grant that user the same priviledges as the creator of the room.
 
