@@ -1,3 +1,11 @@
-chatserver/node_modules/*
-template/node_modules/*
+chatserver/node_modules/**
+template/node_modules/**
 template/package-lock.json
+template/package-lock.json
+template/node_modules/asn1.js/package.json
+template/node_modules/base64-js/base64js.min.js
+template/node_modules/base64-js/index.js
+template/node_modules/base64-js/package.json
+node_modules/*
+node_modules
+package-lock.json
