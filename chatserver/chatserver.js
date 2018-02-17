@@ -17,10 +17,8 @@ rooms.lobby = new Room();
 rooms.lobby.setTopic("Welcome to the lobby!");
 
 io.on('connection', function (socket) {
-	console.log(socket);
 	//This gets performed when a user joins the server.
 	socket.on('adduser', function(username, fn){
-
 		//Check if username is avaliable.
 		if (users[username] === undefined && username.toLowerCase != "server" && username.length < 21) {
 			socket.username = username;
