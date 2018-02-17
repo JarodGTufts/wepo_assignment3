@@ -1,34 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
 import '../styles/site';
 import Service from './service';
+import Login from './pages/login';
+import Chat from './pages/chat';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         this.service = new Service('http://localhost:8080');
-        console.log(this.service);
-
         this.state = {
-            loggedIn: false,
+            loggedIn: undefined,
             username: undefined,
             activeRoom: undefined,
         }
     }
 
     render() {
-        return (
-            <div>
-                <button onClick={this.login.bind(this, 'fuck')}>I am the App</button>
-                <button onClick={this.getThemAll.bind(this)}>I am the App also</button>
-            </div>
-        );
+        if(this.state.loggedIn !== true) {
+            return (
+                <Login
+                    service={this.service}
+                    loginCallback={this.login.bind(this)}
+                />
+            );
+        } else {
+            return (
+                <Chat 
+
+                />
+            );
+        }
     }
 
     login(username) {
-        this.service.login(username);
+        let newState = this.state;
+        newState.loggedIn = true;
+        newState.username = username;
+        this.setState(newState);
     }
 
     getThemAll() {
@@ -37,4 +46,4 @@ class App extends React.Component {
 }
 
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
