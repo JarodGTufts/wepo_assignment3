@@ -1,6 +1,6 @@
 import openSocket from 'socket.io-client';
 
-class Service {
+class Api {
     constructor(url) {
         console.log(url);
         this.socket = openSocket(url);
@@ -27,4 +27,4 @@ class Service {
         });
     }
 }
-export default Service;
+export default Api;

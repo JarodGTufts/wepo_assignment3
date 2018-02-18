@@ -28,7 +28,7 @@ class Login extends React.Component {
         if(userName.length === 0) {
             alert('Write something dude.');
         } else {
-            this.props.service.login(userName, this.props.loginCallback, this.errorUsernameTaken);
+            this.props.api.login(userName, this.props.loginCallback, this.errorUsernameTaken);
         }
     }
 

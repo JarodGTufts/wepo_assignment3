@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/site';
-import Service from './service';
+import Api from './api';
 import Login from './pages/login';
 import Chat from './pages/chat';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.service = new Service('http://localhost:8080');
+        this.api = new Api('http://localhost:8080');
         this.state = {
             loggedIn: undefined,
             username: undefined,
@@ -20,7 +20,7 @@ class App extends React.Component {
         if(this.state.loggedIn !== true) {
             return (
                 <Login
-                    service={this.service}
+                    api={this.api}
                     loginCallback={this.login.bind(this)}
                 />
             );

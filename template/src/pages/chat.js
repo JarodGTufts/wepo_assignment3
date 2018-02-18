@@ -20,7 +20,7 @@ class Chat extends React.Component {
                     </div>
                 </div>
                 <div className="col-6">
-                    //Chat
+                    //Messenger
                 </div>
                 <div className="col-3">
                     <div className="row">
