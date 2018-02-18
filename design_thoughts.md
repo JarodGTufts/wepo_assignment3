@@ -30,3 +30,45 @@ So, breaking out all of that into an actual list of components, organized by sco
 * The user list component, which is rendered by the chat room display
 
 I think that's everything that the application needs to have - but, I think there is a lot of potential to make these sections even more modular, with more specialized components.
+
+## Specific component descriptions
+
+* The overarching **container**
+  * Calls `adduser`, `rooms`, `disconnect`
+  * Renders a `chatroom` component for each result of the `rooms` query
+  * Also renders `privateroom` component
+  * Listens for `roomlist` event
+
+* The **chatroom** component, which forms the left side list of active rooms
+  * Calls `joinroom`, `partroom`, `settopic`
+  * Listens for `updatechat`, `updateusers`, `updatetopic` and `servermessage`
+  * Renders `userlist`, `message` components
+
+* The **privateroom** component, which holds a one-to-one chat
+  * Renders `message` components
+  * Listens for `recv_privatemsg`
+
+* The **message** component
+  * Rendered by the `chatroom`, with props that describe the sender and message text
+
+* A **userlist** component, displayed in each chatroom
+  * Calls the `roomusers` event
+  * Renders a series of `user` components
+
+* A **user** component that describes each current user
+  * Calls `op`, `deop`, `ban`, `unban`, `kick`
+  * Listens for `updateusers` to reflect changes to the user state
+
+* A **messagebar** component
+  * Contains the text input form for a new message
+  * Calls `sendmsg`, `privatemsg`
+
+
+
+
+
+
+
+
+
+
