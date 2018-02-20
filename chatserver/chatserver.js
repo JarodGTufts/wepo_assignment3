@@ -177,7 +177,7 @@ io.on('connection', function (socket) {
 			//Broadcast to the room who got kicked.
 			io.sockets.emit('kicked', kickObj.room, kickObj.user, socket.username);
 			//Update user list for room.
-			io.sockets.emit('updateusers', kickObj.room, rooms[kickObj.room].users, rooms[kickObj.room].ops, rooms[room].banned);
+			io.sockets.emit('updateusers', kickObj.room, rooms[kickObj.room].users, rooms[kickObj.room].ops, rooms[kickObj.room].banned);
 			fn(true);
 		}
 		else {
@@ -196,7 +196,7 @@ io.on('connection', function (socket) {
 			//Broadcast to the room who got opped.
 			io.sockets.emit('opped', opObj.room, opObj.user, socket.username);
 			//Update user list for room.
-			io.sockets.emit('updateusers', opObj.room, rooms[opObj.room].users, rooms[opObj.room].ops, rooms[room].banned);
+			io.sockets.emit('updateusers', opObj.room, rooms[opObj.room].users, rooms[opObj.room].ops, rooms[opObj.room].banned);
 			fn(true);
 		}
 		else {
@@ -216,7 +216,7 @@ io.on('connection', function (socket) {
 			//Broadcast to the room who got opped.
 			io.sockets.emit('deopped', deopObj.room, deopObj.user, socket.username);
 			//Update user list for room.
-			io.sockets.emit('updateusers', deopObj.room, rooms[deopObj.room].users, rooms[deopObj.room].ops, rooms[room].banned);
+			io.sockets.emit('updateusers', deopObj.room, rooms[deopObj.room].users, rooms[deopObj.room].ops, rooms[deopObj.room].banned);
 			fn(true);
 		}
 		else {

@@ -39,7 +39,6 @@ class Userlist extends React.Component {
     };
 
     updateUserlist(newUserlist) {
-        console.log('Userupdate');
         let newState = this.state;
         newState.users = newUserlist;
         this.setState(newState);
