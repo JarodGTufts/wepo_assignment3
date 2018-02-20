@@ -7,6 +7,10 @@ class Api {
         console.log(this.socket);
     }
 
+    register(eventName, callback) {
+        this.socket.on(eventName, callback);
+    }
+
     login(username, cbSuccess, cbError) {
         this.socket.emit('adduser', username, function(available) {
             if (available)
@@ -14,6 +18,26 @@ class Api {
             else
                 cbError(username);
         });
+    }
+
+    joinRoom(roomName, cbSuccess, cbError) {
+        this.socket.emit('joinroom', {room: roomName, pass: undefined},
+            function (successful, error) {
+                if(successful)
+                    cbSuccess(roomName);
+                else
+                    cbError(roomName, error);
+            });
+    }
+
+    partRoom(roomName, cbSuccess, cbError) {
+        this.socket.emit('partroom', roomName,
+            function (successful, error) {
+                if(successful)
+                    cbSuccess(roomName);
+                else
+                    cbError(roomName, error);
+            });
     }
 
     all() {
@@ -25,6 +49,14 @@ class Api {
         this.socket.on('userlist', function(userlist) {
             console.log(userlist);
         });
+    }
+
+    sendMsg(roomName, msg) {
+        this.socket.emit('sendmsg',
+            {
+                roomName: roomName,
+                msg : msg
+            })
     }
 }
 export default Api;

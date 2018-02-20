@@ -1,33 +1,45 @@
 import React from 'react';
+import Messenger from '../components/messenger/messenger.component';
 
 class Chat extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
+            loginSuccess: undefined,
+            username: undefined,
+            activeRoom: undefined,
+            previousRoom: undefined,
+            activeUser: undefined
         }
     }
 
     render() {
-        return(
+        return (
             <div className="row">
                 <div className="col-3">
                     <div className="row">
-                        //Userlist
+                    //Userlist
                     </div>
                     <div className="row">
-                        //Roomlist
+                    //Roomlist
                     </div>
                 </div>
                 <div className="col-6">
-                    //Messenger
+                    <Messenger
+                        service = {this.props.service}
+                        activeRoom = {this.props.activeRoom}
+                        onJoinRoom = {this.props.onJoinRoom}
+                        username = {this.state.username}
+                    />
                 </div>
                 <div className="col-3">
                     <div className="row">
-                        //UserlistInRoom
+                    //UserlistInRoom
                     </div>
                     <div className="row">
-                        //BannedUserlistInRoom
+                    //BannedUserlistInRoom
                     </div>
                 </div>
             </div>
