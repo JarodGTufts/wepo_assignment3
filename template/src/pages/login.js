@@ -11,7 +11,7 @@ class Login extends React.Component {
     }
 
     render() {
-        return(<div>
+        return(<div className="container-fluid p-3">
             <h1>Welcome to this dope chat!</h1>
             <h3>Choose your Username</h3>
             <div className="input-group">
