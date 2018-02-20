@@ -71,7 +71,6 @@ class Messenger extends React.Component {
             }
             this.refs.message.value = '';
         }
-        console.log('Sent ' + message);
     }
 
 
