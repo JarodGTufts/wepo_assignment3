@@ -256,7 +256,6 @@ io.on('connection', function (socket) {
 
 	//Returns a list of all connected users.
 	socket.on('users', function() {
-		console.log("lol");
 		var userlist = [];
 
 		//We need to construct the list since the users in the global user roster have a reference to socket, which has a reference
