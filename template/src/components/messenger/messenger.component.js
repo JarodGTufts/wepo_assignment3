@@ -7,7 +7,6 @@ class Messenger extends React.Component {
         super(props);
         props.service.register('updatechat', this.onUpdateChat.bind(this));
         this.state = {
-            activeRoom: this.props.activeRoom,
             messages: []
         }
     }

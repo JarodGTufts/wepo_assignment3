@@ -1,5 +1,6 @@
 import React from 'react';
 import Messenger from '../components/messenger/messenger.component';
+import Userlist from '../components/user-list/user-list.component';
 
 class Chat extends React.Component {
 
@@ -12,7 +13,9 @@ class Chat extends React.Component {
             <div className="row">
                 <div className="col-3">
                     <div className="row">
-                    //Userlist
+                        <Userlist
+                            service = {this.props.service}
+                        />
                     </div>
                     <div className="row">
                     //Roomlist
@@ -37,6 +40,7 @@ class Chat extends React.Component {
             </div>
         );
     }
+
 };
 
 export default Chat;

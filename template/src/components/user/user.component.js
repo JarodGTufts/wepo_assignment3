@@ -1,13 +1,13 @@
 import React from 'react';
 
-function Message(props) {
+function User(props) {
     let username = props.username;
     return (
-        <div className='User'>
+        <div className='user'>
             {username}
         </div>
     );
 
 }
 
-export default Message;
+export default User;

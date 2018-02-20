@@ -35,7 +35,6 @@ io.on('connection', function (socket) {
 
 	//When a user joins a room this processes the request.
 	socket.on('joinroom', function (joinObj, fn) {
-		console.log(joinObj)
 		var room = joinObj.room;
 		var pass = joinObj.pass;
 		var accepted = true;
@@ -99,10 +98,6 @@ io.on('connection', function (socket) {
 
 	// when the client emits 'sendchat', this listens and executes
 	socket.on('sendmsg', function (data) {
-		console.log('###########rooms###########');
-		console.log(rooms);
-		console.log('###########data###########');
-		console.log(data);
 		var userAllowed = false;
 
 		//Check if user is allowed to send message.
@@ -259,6 +254,7 @@ io.on('connection', function (socket) {
 
 	//Returns a list of all connected users.
 	socket.on('users', function() {
+		console.log("lol");
 		var userlist = [];
 
 		//We need to construct the list since the users in the global user roster have a reference to socket, which has a reference
@@ -266,7 +262,7 @@ io.on('connection', function (socket) {
 		for(var user in users) {
 			userlist.push(user);
 		}
-		socket.emit('userlist', userlist);
+		io.sockets.emit('userlist', userlist);
 	});
 
 	//Returns a list of all users connected to a room.

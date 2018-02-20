@@ -18,6 +18,7 @@ class Api {
             else
                 cbError(username);
         });
+        this.userlist();
     }
 
     joinRoom(roomName, cbSuccess, cbError) {
@@ -28,6 +29,10 @@ class Api {
                 else
                     cbError(roomName, error);
             });
+    }
+
+    userlist() {
+        this.socket.emit('users');
     }
 
     partRoom(roomName, cbSuccess, cbError) {
