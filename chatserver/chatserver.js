@@ -125,7 +125,9 @@ io.on('connection', function (socket) {
 		//If user exists in global user list.
 		if(users[msgObj.nick] !== undefined) {
 			//Send the message only to this user.
-			users[msgObj.nick].socket.emit('recv_privatemsg', socket.username, msgObj.message);
+			users[msgObj.nick].socket.emit('recv_privatemsg', socket.username , msgObj.nick, msgObj.message);
+			//Send the message also back
+			socket.emit('send_privatemsg', socket.username , msgObj.nick, msgObj.message)
 			//Callback recieves true.
 			fn(true);
 		}

@@ -69,5 +69,15 @@ class Api {
                 msg: msg
             })
     }
+
+    sendPrivateMsg(userName, message) {
+        this.socket.emit('privatemsg',
+            {
+                nick: userName,
+                message: message
+            }, function (successful) {
+                console.log(successful)
+            })
+    }
 }
 export default Api;

@@ -16,8 +16,13 @@ class Userlist extends React.Component {
         this.state.users.forEach((username, index) => {
             user.push(
                 <User
+                    service={this.props.service}
                     username={username}
+                    name={this.props.username}
                     key={'user' + index}
+                    onClick={this.props.onPrivateChat}
+                    updateMessages={this.props.updateMessages}
+                    userImChattingWith={this.props.userImChattingWith}
                 />)
 
         });

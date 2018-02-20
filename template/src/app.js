@@ -15,6 +15,7 @@ class App extends React.Component {
             loggedIn: undefined,
             username: undefined,
             activeRoom: undefined,
+            userImChattingWith: undefined,
             privateMessages: undefined,
             messages: []
         }
@@ -63,8 +64,12 @@ class App extends React.Component {
                 <Chat
                     service={this.api}
                     activeRoom={this.state.activeRoom}
+                    userImChattingWith={this.state.userImChattingWith}
+                    onPrivateChat={this.onPrivateChat.bind(this)}
                     onJoinRoom={this.onJoinRoom.bind(this)}
+                    updateMessages={this.updateMessages.bind(this)}
                     username={this.state.username}
+                    messages={this.state.messages}
                 />
             );
         }
@@ -96,10 +101,21 @@ class App extends React.Component {
         if (newState.activeRoom !== undefined)
             newState.previousRoom = newState.activeRoom.slice(0);
         newState.activeRoom = roomName;
+        newState.userImChattingWith = undefined;
         this.setState(newState);
     }
+
     joinUnsuccessful(error, roomName) {
         console.log('Error joining: ' + roomName + ' Errormsg: ' + error);
+    }
+
+    onPrivateChat(userName, messages) {
+        console.log(messages);
+        let newState = this.state;
+        newState.userImChattingWith = userName;
+        newState.activeRoom = undefined;
+        newState.messages = messages;
+        this.setState(newState);
     }
 
     updateMessages(messages) {
@@ -107,6 +123,7 @@ class App extends React.Component {
         newState.messages = messages;
         this.setState(newState);
     }
+    
 }
 
 

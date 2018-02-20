@@ -10,6 +10,8 @@ class Chat extends React.Component {
     }
 
     render() {
+        console.log(this.props.activeRoom);
+        console.log(this.props.userImChattingWith);
         return (
             <div className="container-fluid p-3">
                 <div className="row p-3">
@@ -17,6 +19,10 @@ class Chat extends React.Component {
                         <div className="row">
                             <Userlist
                                 service={this.props.service}
+                                onPrivateChat={this.props.onPrivateChat}
+                                userImChattingWith={this.props.userImChattingWith}
+                                username={this.props.username}
+                                updateMessages={this.props.updateMessages}
                             />
                         </div>
                         <div className="row">
@@ -32,8 +38,11 @@ class Chat extends React.Component {
                         <Messenger
                             service={this.props.service}
                             activeRoom={this.props.activeRoom}
+                            userImChattingWith={this.props.userImChattingWith}
                             onJoinRoom={this.props.onJoinRoom}
                             username={this.props.username}
+                            messages={this.props.messages}
+                            mode={(this.props.userImChattingWith === undefined ? 'roomchat': 'privatechat')}
                         />
                     </div>
                     <div className="col-3">
