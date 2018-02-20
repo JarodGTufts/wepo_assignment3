@@ -5,8 +5,13 @@ import { shallow } from 'enzyme';
 
 describe('Single user display tests', () => {
 
+    const mockService = {};
+    mockService.register = jest.fn();
+
     const testName = 'Theodore'
-    const component = shallow(<User username={testName} />);
+    const component = shallow(<User username={testName} mode={'normal'} service={mockService} />);
+
+
 
     it('should render a component with the given username', () => {
 

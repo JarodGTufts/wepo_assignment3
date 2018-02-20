@@ -14,6 +14,7 @@ class Messenger extends React.Component {
     }
 
     render() {
+
         if(this.props.mode === 'roomchat') {
             return (
                 <div className='messenger'>
