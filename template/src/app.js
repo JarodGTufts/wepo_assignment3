@@ -4,6 +4,8 @@ import '../styles/site';
 import Api from './api';
 import Login from './pages/login';
 import Chat from './pages/chat';
+import Popup from 'react-popup';
+import Prompt from './components/popup/popup-prompt.component';
 
 class App extends React.Component {
     constructor(props) {
@@ -16,6 +18,36 @@ class App extends React.Component {
             privateMessages: undefined,
             messages: []
         }
+        this.textPopup();
+    }
+
+    textPopup() {
+        Popup.registerPlugin('prompt', function (defaultValue, placeholder, callback) {
+            let promptValue = null;
+            let promptChange = function (value) {
+                promptValue = value;
+            };
+            Popup.create({
+                title: 'What\'s your rooms name?',
+                content: <Prompt onChange={promptChange} placeholder={placeholder} value={defaultValue} />,
+                buttons: {
+                    left: ['cancel'],
+                    right: [{
+                        text: 'Save',
+                        key: 'enter',
+                        className: 'success',
+                        action: function () {
+                            callback(promptValue);
+                            Popup.close();
+                        }
+                    }]
+                }
+            });
+        });
+    }
+
+    componentWillUnmount() {
+        api.userlist();
     }
 
     render() {
@@ -31,7 +63,7 @@ class App extends React.Component {
                 <Chat
                     service={this.api}
                     activeRoom={this.state.activeRoom}
-                    joinRoom={this.joinRoom.bind(this)}
+                    onJoinRoom={this.onJoinRoom.bind(this)}
                     username={this.state.username}
                 />
             );
@@ -42,7 +74,7 @@ class App extends React.Component {
         let newState = this.state;
         newState.loggedIn = true;
         newState.username = username;
-        this.joinRoom('lobby');
+        this.onJoinRoom('lobby');
         this.setState(newState);
     }
 
@@ -50,7 +82,8 @@ class App extends React.Component {
         console.log(this.api.all());
     }
 
-    joinRoom(roomName) {
+    onJoinRoom(roomName) {
+        console.log('WoW');
         if (this.state.activeRoom !== roomName)
             this.api.joinRoom(roomName, this.joinSuccessful.bind(this), this.joinUnsuccessful);
     }

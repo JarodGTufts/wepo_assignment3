@@ -12,33 +12,39 @@ class Api {
     }
 
     login(username, cbSuccess, cbError) {
-        this.socket.emit('adduser', username, function(available) {
+        this.socket.emit('adduser', username, function (available) {
             if (available)
                 cbSuccess(username);
             else
                 cbError(username);
         });
         this.userlist();
-    }
-
-    joinRoom(roomName, cbSuccess, cbError) {
-        this.socket.emit('joinroom', {room: roomName, pass: undefined},
-            function (successful, error) {
-                if(successful)
-                    cbSuccess(roomName);
-                else
-                    cbError(roomName, error);
-            });
+        this.roomlist();
     }
 
     userlist() {
         this.socket.emit('users');
     }
 
+    roomlist() {
+        this.socket.emit('rooms');
+    }
+
+    joinRoom(roomName, cbSuccess, cbError) {
+        this.socket.emit('joinroom', { room: roomName, pass: undefined },
+            function (successful, error) {
+                if (successful)
+                    cbSuccess(roomName);
+                else
+                    cbError(roomName, error);
+            });
+        this.roomlist();
+    }
+
     partRoom(roomName, cbSuccess, cbError) {
         this.socket.emit('partroom', roomName,
             function (successful, error) {
-                if(successful)
+                if (successful)
                     cbSuccess(roomName);
                 else
                     cbError(roomName, error);
@@ -46,12 +52,12 @@ class Api {
     }
 
     all() {
-        this.socket.emit('users', function(userlist) {
-            if(userlist) {
+        this.socket.emit('users', function (userlist) {
+            if (userlist) {
                 console.log(userlist);
             }
         });
-        this.socket.on('userlist', function(userlist) {
+        this.socket.on('userlist', function (userlist) {
             console.log(userlist);
         });
     }
@@ -60,7 +66,7 @@ class Api {
         this.socket.emit('sendmsg',
             {
                 roomName: roomName,
-                msg : msg
+                msg: msg
             })
     }
 }
