@@ -19,7 +19,7 @@ class Messenger extends React.Component {
                     <h3>{this.props.activeRoom}</h3>
                 </div>
                 <MessageList
-                    sender={this.props.username}
+                    username={this.props.username}
                     messages={this.state.messages}
                 />
                 <div className="input-group">
