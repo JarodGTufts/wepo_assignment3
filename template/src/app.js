@@ -83,12 +83,7 @@ class App extends React.Component {
         this.setState(newState);
     }
 
-    getThemAll() {
-        console.log(this.api.all());
-    }
-
     onJoinRoom(roomName) {
-        console.log('WoW');
         if (this.state.activeRoom !== roomName)
             this.api.joinRoom(roomName, this.joinSuccessful.bind(this), this.joinUnsuccessful);
     }
@@ -110,7 +105,6 @@ class App extends React.Component {
     }
 
     onPrivateChat(userName, messages) {
-        console.log(messages);
         let newState = this.state;
         newState.userImChattingWith = userName;
         newState.activeRoom = undefined;
@@ -123,7 +117,7 @@ class App extends React.Component {
         newState.messages = messages;
         this.setState(newState);
     }
-    
+
 }
 
 

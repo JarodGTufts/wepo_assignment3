@@ -80,7 +80,6 @@ class RoomUserlist extends React.Component {
 
             for (var user in users) {
                 if (allOpNames.indexOf(user) === -1) {
-
                     newState.activeUsers.push(
                         {
                             name: user,

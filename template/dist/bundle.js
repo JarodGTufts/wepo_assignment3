@@ -13944,7 +13944,6 @@ var App = function (_React$Component) {
     }, {
         key: 'onJoinRoom',
         value: function onJoinRoom(roomName) {
-            console.log('WoW');
             if (this.state.activeRoom !== roomName) this.api.joinRoom(roomName, this.joinSuccessful.bind(this), this.joinUnsuccessful);
         }
     }, {
