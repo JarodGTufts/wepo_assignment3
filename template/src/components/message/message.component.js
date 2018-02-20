@@ -1,9 +1,12 @@
 import React from 'react';
 
 function Message(props) {
+// Initialize local variables for props
   let username = props.username;
   let author = props.author;
   let message = props.message;
+  // If the message was sent by the current user,
+    // return a message with the corerct class
   if (author === username) {
     return (
       <div className='Message'>
@@ -12,7 +15,9 @@ function Message(props) {
         </li>
       </div>
     );
-  } else {
+  } 
+  // If the message was sent by another user, return a message
+  else {
     return (
       <div className='Message'>
         <li className='list-group-item list-group-item-secondary other-message'>
