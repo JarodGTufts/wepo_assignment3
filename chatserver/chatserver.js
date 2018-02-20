@@ -53,7 +53,7 @@ io.on('connection', function (socket) {
 			users[socket.username].channels[room] = room;
 			//Send the room information to the client.
 			fn(true);
-			io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
+			io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops, rooms[room].banned);
 			//Update topic
 			socket.emit('updatetopic', room, rooms[room].topic, socket.username);
 			io.sockets.emit('servermessage', "join", room, socket.username);
@@ -87,7 +87,7 @@ io.on('connection', function (socket) {
 				//Keep track of the room in the user object.
 				users[socket.username].channels[room] = room;
 				//Send the room information to the client.
-				io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
+				io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops, rooms[room].banned);
 				socket.emit('updatechat', room, rooms[room].messageHistory);
 				socket.emit('updatetopic', room, rooms[room].topic, socket.username);
 				io.sockets.emit('servermessage', "join", room, socket.username);
@@ -142,7 +142,7 @@ io.on('connection', function (socket) {
 		//Remove the channel from the user object in the global user roster.
 		delete users[socket.username].channels[room];
 		//Update the userlist in the room.
-		io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
+		io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops, rooms[room].banned);
 		io.sockets.emit('servermessage', "part", room, socket.username);
 	});
 
@@ -155,7 +155,7 @@ io.on('connection', function (socket) {
 				//Remove the user from users/ops lists in the rooms he's currently in.
 				delete rooms[room].users[socket.username];
 				delete rooms[room].ops[socket.username];
-				io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
+				io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops, rooms[room].banned);
 			}
 
 			//Broadcast the the user has left the channels he was in.
@@ -177,7 +177,7 @@ io.on('connection', function (socket) {
 			//Broadcast to the room who got kicked.
 			io.sockets.emit('kicked', kickObj.room, kickObj.user, socket.username);
 			//Update user list for room.
-			io.sockets.emit('updateusers', kickObj.room, rooms[kickObj.room].users, rooms[kickObj.room].ops);
+			io.sockets.emit('updateusers', kickObj.room, rooms[kickObj.room].users, rooms[kickObj.room].ops, rooms[room].banned);
 			fn(true);
 		}
 		else {
@@ -196,7 +196,7 @@ io.on('connection', function (socket) {
 			//Broadcast to the room who got opped.
 			io.sockets.emit('opped', opObj.room, opObj.user, socket.username);
 			//Update user list for room.
-			io.sockets.emit('updateusers', opObj.room, rooms[opObj.room].users, rooms[opObj.room].ops);
+			io.sockets.emit('updateusers', opObj.room, rooms[opObj.room].users, rooms[opObj.room].ops, rooms[room].banned);
 			fn(true);
 		}
 		else {
@@ -216,7 +216,7 @@ io.on('connection', function (socket) {
 			//Broadcast to the room who got opped.
 			io.sockets.emit('deopped', deopObj.room, deopObj.user, socket.username);
 			//Update user list for room.
-			io.sockets.emit('updateusers', deopObj.room, rooms[deopObj.room].users, rooms[deopObj.room].ops);
+			io.sockets.emit('updateusers', deopObj.room, rooms[deopObj.room].users, rooms[deopObj.room].ops, rooms[room].banned);
 			fn(true);
 		}
 		else {
@@ -233,7 +233,7 @@ io.on('connection', function (socket) {
 			rooms[banObj.room].banUser(banObj.user);
 			//Kick the user from the room.
 			io.sockets.emit('banned', banObj.room, banObj.user, socket.username);
-			io.sockets.emit('updateusers', banObj.room, rooms[banObj.room].users, rooms[banObj.room].ops);
+			io.sockets.emit('updateusers', banObj.room, rooms[banObj.room].users, rooms[banObj.room].ops, rooms[banObj.room].banned);
 			fn(true);
 		}
 		fn(false);
@@ -251,7 +251,7 @@ io.on('connection', function (socket) {
 
 	//Returns a list of all avaliable rooms.
 	socket.on('rooms', function() {
-		socket.emit('roomlist', rooms);
+		io.sockets.emit('roomlist', rooms);
 	});
 
 	//Returns a list of all connected users.
@@ -274,7 +274,7 @@ io.on('connection', function (socket) {
 		{
 			userlist = rooms[data.roomName].users;
 		}
-		socket.emit('roomuserlist', userlist);
+		io.sockets.emit('roomuserlist', userlist);
 	});
 
 	//Sets topic for room.

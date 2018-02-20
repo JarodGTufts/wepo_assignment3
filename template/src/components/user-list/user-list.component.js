@@ -16,6 +16,7 @@ class Userlist extends React.Component {
         this.state.users.forEach((username, index) => {
             user.push(
                 <User
+                    mode={'normal'}
                     service={this.props.service}
                     username={username}
                     name={this.props.username}

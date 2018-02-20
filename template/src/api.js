@@ -2,9 +2,7 @@ import openSocket from 'socket.io-client';
 
 class Api {
     constructor(url) {
-        console.log(url);
         this.socket = openSocket(url);
-        console.log(this.socket);
     }
 
     register(eventName, callback) {
@@ -30,6 +28,10 @@ class Api {
         this.socket.emit('rooms');
     }
 
+    roomuserlist(roomName) {
+        this.socket.emit('roomusers', { roomName: roomName });
+    }
+
     joinRoom(roomName, cbSuccess, cbError) {
         this.socket.emit('joinroom', { room: roomName, pass: undefined },
             function (successful, error) {
@@ -39,6 +41,7 @@ class Api {
                     cbError(roomName, error);
             });
         this.roomlist();
+        this.roomuserlist(roomName);
     }
 
     partRoom(roomName, cbSuccess, cbError) {
@@ -49,17 +52,12 @@ class Api {
                 else
                     cbError(roomName, error);
             });
+        this.roomuserlist(roomName);
     }
 
     all() {
-        this.socket.emit('users', function (userlist) {
-            if (userlist) {
-                console.log(userlist);
-            }
-        });
-        this.socket.on('userlist', function (userlist) {
-            console.log(userlist);
-        });
+        this.socket.emit('users');
+        this.socket.on('userlist');
     }
 
     sendMsg(roomName, msg) {
@@ -75,9 +73,70 @@ class Api {
             {
                 nick: userName,
                 message: message
-            }, function (successful) {
-                console.log(successful)
             })
+    }
+
+
+    kick(userName, roomName, cbSuccess, cbError) {
+        this.socket.emit('kick',
+            {
+                user: userName,
+                room: roomName
+            }, function (success) {
+                if(success)
+                    cbSuccess();
+                else
+                    cbError();
+            });
+
+    }
+    ban(userName, roomName, cbSuccess, cbError) {
+        this.socket.emit('ban',
+            {
+                user: userName,
+                room: roomName
+            }, function (success) {
+                if(success)
+                    cbSuccess();
+                else
+                    cbError();
+            });
+    }
+    unban(userName, roomName, cbSuccess, cbError) {
+        this.socket.emit('unban',
+            {
+                user: userName,
+                room: roomName
+            }, function (success) {
+                if(success)
+                    cbSuccess();
+                else
+                    cbError();
+            });
+    }
+    op(userName, roomName, cbSuccess, cbError) {
+        this.socket.emit('op',
+            {
+                user: userName,
+                room: roomName
+            }, function (success) {
+                if(success)
+                    cbSuccess();
+                else
+                    cbError();
+            });
+    }
+    deop(userName, roomName, cbSuccess, cbError) {
+        this.socket.emit('deop',
+            {
+                user: userName,
+                room: roomName
+            }, function (success) {
+                if(success)
+                    cbSuccess();
+                else
+                    cbError();
+            });
     }
 }
 export default Api;

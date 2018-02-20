@@ -2,6 +2,7 @@ import React from 'react';
 import Messenger from '../components/messenger/messenger.component';
 import Userlist from '../components/user-list/user-list.component';
 import Roomlist from '../components/room-list/room-list.component';
+import RoomUserlist from '../components/room-user-list/room-user-list.component';
 
 class Chat extends React.Component {
 
@@ -10,8 +11,6 @@ class Chat extends React.Component {
     }
 
     render() {
-        console.log(this.props.activeRoom);
-        console.log(this.props.userImChattingWith);
         return (
             <div className="container-fluid p-3">
                 <div className="row p-3">
@@ -42,12 +41,16 @@ class Chat extends React.Component {
                             onJoinRoom={this.props.onJoinRoom}
                             username={this.props.username}
                             messages={this.props.messages}
-                            mode={(this.props.userImChattingWith === undefined ? 'roomchat': 'privatechat')}
+                            mode={(this.props.userImChattingWith === undefined ? 'roomchat' : 'privatechat')}
                         />
                     </div>
                     <div className="col-3">
                         <div className="row">
-                        //UserlistInRoom
+                            <RoomUserlist 
+                                service={this.props.service}
+                                activeRoom={this.props.activeRoom}
+                                username={this.props.username}
+                            />
                         </div>
                         <div className="row">
                         //BannedUserlistInRoom
