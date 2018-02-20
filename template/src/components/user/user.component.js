@@ -19,20 +19,20 @@ class User extends React.Component {
         let mode = this.props.mode;
         if (mode === 'normal') {
             return (
-                <div className='list-group-item user' onClick={this.onClick.bind(this)}>
-                    {username} <div className="unread-msg">{this.state.unreadMessages}</div>
+                <div className='list-group-item-info list-group-item-action p-1 text-center user' onClick={this.onClick.bind(this)}>
+                    {username}  &nbsp; <span className="badge badge-primary badge-pill">{this.state.unreadMessages}</span>
                 </div>
             );
         } else if (mode === 'admin') {
             if (this.props.isAdmin) {
                 return (
-                    <div className='list-group-item user'>
+                    <div className='list-group-item-info list-group-item-action p-1 text-center user'>
                         {username}
                         <button onClick={this.onMakeUser.bind(this)}>UnOp</button>
                     </div>);
             } else {
                 return (
-                    <div className='list-group-item user'>
+                    <div className='list-group-item-info list-group-item-action p-1 text-center user'>
                         {username}
                         <button onClick={this.onBan.bind(this)}>Ban</button>
                         <button onClick={this.onKick.bind(this)}>Kick</button>
@@ -41,18 +41,18 @@ class User extends React.Component {
             }
         } else if (mode === 'roomview') {
             return (
-                <div className='list-group-item user'>
+                <div className='list-group-item-info list-group-item-action p-1 text-center user'>
                     {username}
                 </div>);
         } else if (mode === 'banned') {
             if (!this.props.isClientAdmin) {
                 return (
-                    <div className='list-group-item banneduser'>
+                    <div className='list-group-item-info list-group-item-action p-1 text-center banneduser'>
                         {username}
                     </div>);
             } else {
                 return (
-                    <div className='list-group-item banneduser'>
+                    <div className='list-group-item-info list-group-item-action p-1 text-center banneduser'>
                         {username}
                         <button onClick={this.onUnban.bind(this)}>Unbann</button>
                     </div>);
