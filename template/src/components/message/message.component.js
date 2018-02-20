@@ -12,18 +12,15 @@ function Message(props) {
     if (sender === myName) {
         return (
             <div className='Message'>
-                <li className='list-group-item list-group-item-secondary my-message'>
+                <li className='list-group-item list-group-item-secondary bg-info my-message'>
                     {message} <sub> {sender} </sub>
                 </li>
             </div>
         );
-    }
-
-    // If the message was sent by another user, return a message
-    else {
+    } else {
         return (
             <div className='Message'>
-                <li className='list-group-item list-group-item-secondary other-message'>
+                <li className='list-group-item list-group-item-secondary bg-success other-message'>
                     {message} <sub> {sender} </sub>
                 </li>
             </div>
