@@ -7,7 +7,7 @@ describe('Individual message tests', () => {
 
     // Create a new message with a known message string and senders
     const myMessage = 'Whos on first?';
-    const component = shallow(<Message sender={'Abbot'} myName={'Costello'} message={myMessage} />);
+    const component = shallow(<Message author={'Abbot'} username={'Costello'} message={myMessage} />);
 
     // Check that the message is shown
     it('should display a message', () => {
@@ -20,7 +20,7 @@ describe('Individual message tests', () => {
     });
 
     // Create a new message, with the same sender and myName values
-    const selfMessage = shallow(<Message sender={'Abbot'} myName={'Abbot'} message={'*Wait, I thought he was on second...*'} />);
+    const selfMessage = shallow(<Message author={'Abbot'} username={'Abbot'} message={'*Wait, I thought he was on second...*'} />);
 
     // Check that the message has the correct class for a message sent by yourself
     it('should recognize that a message was sent by the current user', () => {
