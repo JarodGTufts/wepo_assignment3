@@ -42,9 +42,7 @@ class RoomUserlist extends React.Component {
 
         });
         // Return a new list of all of the messages
-        console.log('here');
-        console.log(users);
-        console.log(banned);
+
         return (
             <div className='userlist-element p-0' >
                 <p className='h3'>Active Users in this Room</p>
@@ -60,19 +58,16 @@ class RoomUserlist extends React.Component {
     };
 
     updateUsers(roomName, users, ops, banned) {
-        console.log(roomName);
-        console.log(users);
-        console.log(ops);
-        console.log(banned);
+
         if (roomName === this.props.activeRoom) {
             let allOpNames = [];
             var newState = this.state;
             newState.activeUsers = [];
             newState.bannedUsers = [];
             newState.isClientAdmin = false;
-            console.log('ALL OPS');
+
             for (var user in ops) {
-                console.log(user);
+
                 newState.activeUsers.push(
                     {
                         name: user,
@@ -85,7 +80,7 @@ class RoomUserlist extends React.Component {
 
             for (var user in users) {
                 if (allOpNames.indexOf(user) === -1) {
-                    console.log('why am i here?');
+
                     newState.activeUsers.push(
                         {
                             name: user,
@@ -93,14 +88,14 @@ class RoomUserlist extends React.Component {
                         })
                 }
             }
-            console.log('ALL OPS');
+
             for (var user in banned) {
-                console.log(banned);
+
                 newState.bannedUsers.push(user);
             }
             this.setState(newState);
-            console.log('FFFFFFFFFZUUUUU');
-            console.log(this.state);
+
+
         }
 
     }
