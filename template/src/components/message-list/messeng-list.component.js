@@ -29,7 +29,7 @@ class MessageList extends React.Component {
 
         // Return a new list of all of the messages
         return (
-            <div className = 'messenger' >
+            <div className='messenger' >
                 <ul className="list-group messenger__list">
                     {messages}
                 </ul>
