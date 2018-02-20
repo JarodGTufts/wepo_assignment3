@@ -16,9 +16,9 @@ class User extends React.Component {
         let username = this.props.username;
         return (
     
-            <div className='list-group-item user' onClick={this.onClick.bind(this)}>
-                {username} <div className="unread-msg">{this.state.unreadMessages}</div>
-            </div>
+            <a href="#" className='list-group-item-info list-group-item-action p-1 text-center user' onClick={this.onClick.bind(this)}>
+                {username} &nbsp; <span className="badge badge-primary badge-pill">{this.state.unreadMessages}</span>
+            </a>
         );
     }
 

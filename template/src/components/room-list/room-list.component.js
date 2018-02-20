@@ -27,16 +27,18 @@ class Roomlist extends React.Component {
 
         // Return a new list of all of the messages
         return (
+            
             <div className='roomlist-newroom'>
+                <div className="h3">Active Rooms</div>
+                <div className='roomlist-element' >
+                    <ul className="list-group pb-2 room__list">
+                        {room}
+                    </ul>
+                </div>
                 <div className="input-group">
                     <input type="text" className="form-control" ref={'newroomname'} placeholder="New Room" aria-label="newroom" aria-describedby="basic-addon1" onChange={(e) => this.setState({ newRoomName: e.value })}
                     />
                     <input type="submit" className="btn btn-primary" value="NewRoom" onClick={this.newRoom.bind(this)} />
-                </div>
-                <div className='roomlist-element' >
-                    <ul className="list-group room__list">
-                        {room}
-                    </ul>
                 </div>
             </div>
         );

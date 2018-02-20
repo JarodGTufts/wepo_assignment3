@@ -7,7 +7,7 @@ class Room extends React.Component {
     }
 
     newRoom() {
-        this.props.service.joinRoom(this.props.roomName, this.props.onJoinRoom, () => { console.log('error') })
+        this.props.service.joinRoom(this.props.roomName, this.props.onJoinRoom, () => { console.log('error') });
     }
 
     render() {
@@ -17,15 +17,15 @@ class Room extends React.Component {
 
         if (locked) {
             return (
-                <div onClick={this.newRoom.bind(this)} className='user'>
+                <a href="#" onClick={this.newRoom.bind(this)} className='user list-group-item list-group-item-action'>
                     {roomName} --LOCKED--
-                </div>
+                </a>
             );
         } else {
             return (
-                <div onClick={this.newRoom.bind(this)} className='user'>
+                <a href="#" onClick={this.newRoom.bind(this)} className='user list-group-item list-group-item-action'>
                     {roomName}
-                </div>
+                </a>
             );
         }
     }

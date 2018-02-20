@@ -10,7 +10,7 @@ function Message(props) {
     if (author === username) {
         return (
             <div className='Message'>
-                <li className='list-group-item list-group-item-secondary my-message'>
+                <li className='list-group-item list-group-item-info my-message'>
                     <p className='font-weight-bold'><sub>{author}:</sub></p> &nbsp; {message}
                 </li>
             </div>

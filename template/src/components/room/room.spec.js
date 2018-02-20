@@ -9,7 +9,7 @@ describe('Room creation tests', () => {
     // http://goodriddlesnow.com/riddles/view/2340
     const firstName = 'A room with a lion that hasnt been fed for two months';
     const secondName = 'A room with ninja assasins';
-    const thirdName = 'A room with a raging inferno';
+    //const thirdName = 'A room with a raging inferno';
 
     const firstComponent = shallow(<Room roomName={firstName} locked={false} />);
 
