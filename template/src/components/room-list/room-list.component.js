@@ -24,6 +24,7 @@ class Roomlist extends React.Component {
                 />)
 
         });
+
         // Return a new list of all of the messages
         return (
             <div className='roomlist-newroom'>

@@ -11,7 +11,7 @@ function Message(props) {
         return (
             <div className='Message'>
                 <li className='list-group-item list-group-item-secondary my-message'>
-                    {message} &nbsp;<sub> {author} </sub>
+                    <p className='font-weight-bold'><sub>{author}:</sub></p> &nbsp; {message}
                 </li>
             </div>
         );
@@ -19,7 +19,7 @@ function Message(props) {
         return (
             <div className='Message'>
                 <li className='list-group-item list-group-item-secondary other-message'>
-                    {message} &nbsp;<sub> {author} </sub>
+                    <p className='font-weight-bold'><sub>{author}:</sub></p> &nbsp; {message}
                 </li>
             </div>
         );

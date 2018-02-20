@@ -14,6 +14,7 @@ class Room extends React.Component {
 
         let roomName = this.props.roomName;
         let locked = this.props.locked;
+
         if (locked) {
             return (
                 <div onClick={this.newRoom.bind(this)} className='user'>
