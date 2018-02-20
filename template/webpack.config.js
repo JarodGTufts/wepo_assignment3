@@ -2,10 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/app.js',
+    entry: ['babel-polyfill', './src/App.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -23,14 +24,15 @@ module.exports = {
         extensions: ['.js', '.jsx', '.less']
     },
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: 9000,
-        open: true
+        port: 9090,
+        open: true,
+        historyApiFallback: true
     },
     devtool: 'inline-source-map',
     plugins: [new HtmlWebpackPlugin({
         title: 'ChatRoomJS',
-        template: './index.html'
+        template: './index.html',
+        inject: 'body'
     })]
 };
