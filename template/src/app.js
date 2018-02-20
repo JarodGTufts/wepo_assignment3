@@ -64,7 +64,6 @@ class App extends React.Component {
             newState.previousRoom = newState.activeRoom.slice(0);
         newState.activeRoom = roomName;
         this.setState(newState);
-
     }
     joinUnsuccessful(error, roomName) {
         console.log('Error joining: ' + roomName + ' Errormsg: ' + error);

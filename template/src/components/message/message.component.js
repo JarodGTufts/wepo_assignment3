@@ -1,14 +1,14 @@
 import React from 'react';
 
 function Message(props) {
-  let sender = props.sender;
-  let myName = props.myName;
+  let username = props.username;
+  let author = props.author;
   let message = props.message;
-  if (sender === myName) {
+  if (author === username) {
     return (
       <div className='Message'>
         <li className='list-group-item list-group-item-secondary my-message'>
-          {message} <sub> {sender} </sub>
+          {message} <sub> {author} </sub>
         </li>
       </div>
     );
@@ -16,7 +16,7 @@ function Message(props) {
     return (
       <div className='Message'>
         <li className='list-group-item list-group-item-secondary other-message'>
-          {message} <sub> {sender} </sub>
+          {message} <sub> {author} </sub>
         </li>
       </div>
     );

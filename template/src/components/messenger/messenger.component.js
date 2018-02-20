@@ -7,6 +7,7 @@ class Messenger extends React.Component {
         super(props);
         props.service.register('updatechat', this.onUpdateChat.bind(this));
         this.state = {
+            activeRoom: this.props.activeRoom,
             messages: []
         }
     }
@@ -15,10 +16,10 @@ class Messenger extends React.Component {
         return (
             <div className='messenger'>
                 <div className='messenger__header'>
-                    <h3>{this.props.roomName}</h3>
+                    <h3>{this.props.activeRoom}</h3>
                 </div>
                 <MessageList
-                    sender={this.props.sender}
+                    sender={this.props.username}
                     messages={this.state.messages}
                 />
                 <div className="input-group">

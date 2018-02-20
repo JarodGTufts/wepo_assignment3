@@ -5,14 +5,6 @@ class Chat extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            loginSuccess: undefined,
-            username: undefined,
-            activeRoom: undefined,
-            previousRoom: undefined,
-            activeUser: undefined
-        }
     }
 
     render() {
@@ -31,7 +23,7 @@ class Chat extends React.Component {
                         service = {this.props.service}
                         activeRoom = {this.props.activeRoom}
                         onJoinRoom = {this.props.onJoinRoom}
-                        username = {this.state.username}
+                        username = {this.props.username}
                     />
                 </div>
                 <div className="col-3">
