@@ -11,8 +11,8 @@ class Chat extends React.Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <div className="row">
+            <div className="container-fluid p-3">
+                <div className="row p-3">
                     <div className="col-3">
                         <div className="row">
                             <Userlist

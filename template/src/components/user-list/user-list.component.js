@@ -23,8 +23,8 @@ class Userlist extends React.Component {
         });
         // Return a new list of all of the messages
         return (
-            <div className='userlist-element' >
-                <ul className="list-group user__list">
+            <div className='userlist-element p-0' >
+                <ul className="list-group list-group-flush user__list">
                     {user}
                 </ul>
             </div>
