@@ -26,7 +26,6 @@ function Message(props) {
       </div>
     );
   }
-
 }
 
 export default Message;
