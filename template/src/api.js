@@ -73,6 +73,8 @@ class Api {
             {
                 nick: userName,
                 message: message
+            }, function(success) {
+                console.log(success);
             })
     }
 

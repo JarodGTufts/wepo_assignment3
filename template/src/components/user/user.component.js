@@ -122,12 +122,13 @@ class User extends React.Component {
     }
 
     onUnban() {
-        this.props.service.unban(this.props.username, this.props.activeRoom, this.onSuccessfulUnban, this.onUnsuccessfulUnban);
+        this.props.service.unban(this.props.username, this.props.activeRoom, this.onSuccessfulUnban.bind(this), this.onUnsuccessfulUnban);
 
     }
     onSuccessfulUnban(name) {
         alert('User ' + name + ' successfully unbanned.');
-        this.props.service.triggerUserList();
+        this.props.service.userlist();
+        this.props.service.roomuserlist();
     }
     onUnsuccessfulUnban(name) {
         alert('User ' + name + ' could not be unbanned.');
