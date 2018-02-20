@@ -45,16 +45,11 @@ class Chat extends React.Component {
                         />
                     </div>
                     <div className="col-3">
-                        <div className="row">
-                            <RoomUserlist 
-                                service={this.props.service}
-                                activeRoom={this.props.activeRoom}
-                                username={this.props.username}
-                            />
-                        </div>
-                        <div className="row">
-                        //BannedUserlistInRoom
-                        </div>
+                        <RoomUserlist
+                            service={this.props.service}
+                            activeRoom={this.props.activeRoom}
+                            username={this.props.username}
+                        />
                     </div>
                 </div>
             </div>
