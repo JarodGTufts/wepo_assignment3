@@ -29,6 +29,7 @@ class Userlist extends React.Component {
         // Return a new list of all of the messages
         return (
             <div className='userlist-element p-0' >
+                <p className='h3'>Active Users</p>
                 <ul className="list-group list-group-flush user__list">
                     {user}
                 </ul>
